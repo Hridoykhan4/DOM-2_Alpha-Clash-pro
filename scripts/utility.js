@@ -8,10 +8,14 @@ function showElementById(elementId){
     element.classList.remove('hidden');
 }
 
+    function removeBackgroundById(elementId){
+        const element = document.getElementById(elementId);
+        element.classList.remove('bg-orange-400')
+    }
 
     function setBackgroundColor(elementId){
     const element = document.getElementById(elementId);
-    element.classList.add('text-yellow-400')
+    element.classList.add('bg-orange-400')
     element.classList.add('font-bold')
 }
 
