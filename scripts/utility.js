@@ -5,8 +5,35 @@ function hideElementById(elementId){
 
 function showElementById(elementId){
     const element = document.getElementById(elementId);
-    element.classList.remove('hidden');
+    element.classList.remove('hidden')
 }
+
+
+function getARandomAlphabet(){
+    const alphabetString = 'abcdefghijklmnopqrstuvwxyz';
+    const alphabets = alphabetString.split('');
+    
+
+    const randomNumber = Math.random() * 25;
+    const index = Math.round(randomNumber);
+    const alphabet = alphabets[index];
+    return alphabet;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 
     function removeBackgroundById(elementId){
         const element = document.getElementById(elementId);
@@ -20,17 +47,7 @@ function showElementById(elementId){
 }
 
 
-function getARandomAlphabet(){
-    const alphabetString = 'abcdefghijklmnopqrstuvwxyz';
-    const alphabets = alphabetString.split('');
-    
 
-    const randomNumber = Math.random() * 25;
-    const index = Math.round(randomNumber);
-    const alphabet = alphabets[index];
-
-    return alphabet
-}
 
 function setTextElementValueById(elementId, value){
         const element = document.getElementById(elementId);
@@ -49,7 +66,7 @@ function getTextElementValueById(elementId){
 
 
 
-
+ */
 
 
 
