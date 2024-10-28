@@ -11,10 +11,15 @@
 
     function handleKeyboardUpEvent(event){
         const playerPressed = event.key;
+        
+        if(playerPressed === 'Escape'){
+            gameOver()
+        }
         // console.log('You have Pressed', playerPressed);
 
       const currentAlphabetElement = document.getElementById('current-alphabet');  
         const currentAlphabet = currentAlphabetElement.innerText;
+
         // console.log(playerPressed, currentAlphabet)
 
 
@@ -35,7 +40,11 @@
            
         //    const newScore = currentScore + 1;
         //    currentScoreElement.innerText = newScore;
-
+           
+           
+            // Start A New Round 
+            removeBackgroundById(currentAlphabet);
+            continueGame();
         }
         else{
             console.log('Mile Nai');

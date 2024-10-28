@@ -46,6 +46,15 @@ function setTextElementValueById(elementId, value){
     element.innerText = value;
 }
 
+function getElementTextById(elementId){
+    const element = document.getElementById(elementId);
+
+    const text = element.innerText;
+    return text;
+
+}
+
+
 function gameOver(){
     hideElementById('play-ground');
     showElementById('final-score');
@@ -53,12 +62,14 @@ function gameOver(){
     // Update final Score
     // Get The final Score
     const lastScore = getTextElementValueById('current-score');
-    setTextElementValueById('last score', lastScore)
+    setTextElementValueById('last-score', lastScore)
 
 
     // Clear the Last selected Alphabet highlight
-    const currentAlphabet = getElementTextById('current');
+    const currentAlphabet = getElementTextById('current-alphabet');
+    removeBackgroundById(currentAlphabet)
 }
+
 
 
 
