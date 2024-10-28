@@ -21,52 +21,47 @@ function getARandomAlphabet(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-
-    function removeBackgroundById(elementId){
-        const element = document.getElementById(elementId);
-        element.classList.remove('bg-orange-400')
-    }
-
-    function setBackgroundColor(elementId){
+function setBackgroundColorById(elementId){
     const element = document.getElementById(elementId);
-    element.classList.add('bg-orange-400')
-    element.classList.add('font-bold')
+    element.classList.add('bg-yellow-400')
 }
+ 
 
-
-
-
-function setTextElementValueById(elementId, value){
-        const element = document.getElementById(elementId);
-        element.innerText = value;
+function removeBackgroundById(elementid){
+    const element = document.getElementById(elementid);
+    element.classList.remove('bg-yellow-400');
 }
 
 
 function getTextElementValueById(elementId){
-    const element = document.getElementById(elementId)
+    const element = document.getElementById(elementId);
     const elementValueText = element.innerText;
     const value = parseInt(elementValueText);
     return value;
 }
 
 
+function setTextElementValueById(elementId, value){
+    const element = document.getElementById(elementId);
+    element.innerText = value;
+}
+
+function gameOver(){
+    hideElementById('play-ground');
+    showElementById('final-score');
+
+    // Update final Score
+    // Get The final Score
+    const lastScore = getTextElementValueById('current-score');
+    setTextElementValueById('last score', lastScore)
+
+
+    // Clear the Last selected Alphabet highlight
+    const currentAlphabet = getElementTextById('current');
+}
 
 
 
- */
 
 
 
