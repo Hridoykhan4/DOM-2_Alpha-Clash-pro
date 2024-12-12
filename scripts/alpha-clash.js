@@ -24,10 +24,10 @@ const handleKeyBoardButtonPress = (event) => {
     else{
       const currentLife = getTextElementValueById('current-life');
       const newLife = currentLife - 1;
+      setElementValueById('current-life', newLife)
       if(newLife === 0){
         gameOver()
       }
-      setElementValueById('current-life', newLife)
     }
   }
 
