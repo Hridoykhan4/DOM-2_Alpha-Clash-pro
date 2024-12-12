@@ -1,37 +1,75 @@
-function handleKeyboardUpEvent(event) {
-  const playerPressed = event.key;
+const handleKeyBoardButtonPress = (event) => {
+    const keyPressed = event.key;
 
-  if (playerPressed === "Escape") {
-    gameOver();
-  }
+    if(keyPressed === 'Escape'){
+      gameOver()
+    }
 
-  const currentAlphabetElement = document.getElementById("current-alphabet");
-  const currentAlphabet = currentAlphabetElement.innerText;
 
-  if (playerPressed === currentAlphabet) {
-    const currentScore = getTextElementValueById("current-score");
-    const updatedScore = currentScore + 1;
-    setTextElementValueById("current-score", updatedScore);
-    removeBackgroundById(currentAlphabet);
-    continueGame();
-  } else {
-    const currentLife = getTextElementValueById("current-life");
-    const updatedLife = currentLife - 1;
-    setTextElementValueById("current-life", updatedLife);
+    const expectedAlphabet = document.getElementById('current-alphabet').innerText.toLowerCase();
+  
 
-    if (currentLife - 1 < 1) {
-      gameOver();
+    if(keyPressed === expectedAlphabet){
+
+     const currentScore = getTextElementValueById('current-score')
+
+      const newScore = currentScore + 1;
+
+      setElementValueById('current-score', newScore)
+
+
+      removeBackgroundColorById(expectedAlphabet)
+      continueGame()
+    }
+    else{
+      const currentLife = getTextElementValueById('current-life');
+      const newLife = currentLife - 1;
+      if(newLife === 0){
+        gameOver()
+      }
+      setElementValueById('current-life', newLife)
     }
   }
+
+const gameOver = () => {
+  hideElementById('play-ground');
+  showElementById('final-score');
+  const currentScore = document.getElementById('current-score');
+  const score = currentScore.innerText;
+  setElementValueById('last-score', score);
+
+  const current = document.getElementById('current-alphabet').innerText;
+  removeBackgroundColorById(current)
 }
 
-function gameOver() {
-  hideElementById("play-ground");
-  showElementById("final-score");
 
-  const lastScore = getTextElementValueById("current-score");
-  setTextElementValueById("last-score", lastScore);
 
-  const currentAlphabet = getElementTextById("current-alphabet");
-  removeBackgroundById(currentAlphabet);
+
+
+document.addEventListener('keyup', handleKeyBoardButtonPress)
+
+
+
+
+function continueGame() {
+   const alphabet = getARandomAlphabet();
+   const currentAlphabet = document.getElementById('current-alphabet');
+   currentAlphabet.innerText = alphabet;
+   setBackgroundColorById(alphabet)
+
+}
+
+
+
+
+function play() {
+  hideElementById('home-screen');
+  showElementById('play-ground');
+  hideElementById('final-score')
+
+  setElementValueById('current-life', 5);
+  setElementValueById('current-score', 0);
+
+
+  continueGame();
 }
