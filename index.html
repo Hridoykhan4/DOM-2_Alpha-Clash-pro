@@ -33,7 +33,9 @@
         id="home-screen"
         class="text-white flex flex-col items-center justify-center h-screen"
       >
-        <div class="flex flex-col justify-center items-center gap-10">
+        <div
+          class="flex flex-col justify-center text-center items-center gap-10"
+        >
           <h1 class="text-6xl font-serif font-bold text-center">
             ALPHABET CLASH <br />
             Pro
@@ -51,15 +53,24 @@
           <!-- Screen -->
           <div>
             <div
-              class="artboard artboard-horizontal phone-6 mx-auto mb-8 text-white border-[20px] rounded-2xl border-[#010313CC] bg-[#FFFFFFB3]"
+              class="artboard artboard-horizontal lg:phone-2 mx-auto mb-8 text-white border-[20px] rounded-2xl border-[#010313CC] bg-[#FFFFFFB3]"
             >
               <div class="flex justify-center">
                 <p class="bg-[#2F2941] px-6 pb-4 rounded-lg">
                   Dont Watch KeyBoard While Playing
                 </p>
               </div>
+
+              <div class="flex justify-center text-white">
+                <p class="items-end bg-black p-2 rounded-lg text-2xl">
+                  Time: <span id="timing-counter"></span>
+                </p>
+              </div>
               <div class="flex items-center justify-center h-full">
-                <p id="current-alphabet" class="text-black text-9xl font-bold uppercase">
+                <p
+                  id="current-alphabet"
+                  class="text-black text-9xl font-bold uppercase"
+                >
                   y
                 </p>
               </div>
@@ -67,7 +78,9 @@
           </div>
           <!-- KeyBoard start-->
           <div>
-            <div class="my-1 flex w-full justify-center gap-1">
+            <div
+              class="my-1 flex w-full max-w-[300px] lg:max-w-full justify-center gap-1"
+            >
               <kbd id="q" class="kbd">q</kbd>
               <kbd id="w" class="kbd">w</kbd>
               <kbd id="e" class="kbd">e</kbd>
