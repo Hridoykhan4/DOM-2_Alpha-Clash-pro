@@ -1,3 +1,6 @@
+let count = 30;
+let intervalId = null;
+
 const handleTouchInput = (event) => {
   const touchedElement = event.target.innerText.toLowerCase();
   const expectedAlphabet = document
@@ -20,86 +23,74 @@ const handleTouchInput = (event) => {
 };
 document.addEventListener("touchstart", handleTouchInput);
 
-const handleKeyBoardButtonPress = (event) => {
-  const playerPressed = event.key;
-  if (playerPressed === "Escape") {
+const currentAlphabet = document.getElementById("current-alphabet");
+
+const handleKeyBoardBtnPress = (e) => {
+  const btnPressed = e.key;
+  if (btnPressed === "Escape") {
     gameOver();
+    return;
   }
-  const expectedAlphabet = document
-    .getElementById("current-alphabet")
-    .innerText.toLowerCase();
-
-  if (playerPressed === expectedAlphabet) {
+  const btnChecked = currentAlphabet.textContent;
+  if (btnChecked === btnPressed) {
     const currentScore = getTextElementValueById("current-score");
-
-    const newScore = currentScore + 1;
-
-    setElementValueById("current-score", newScore);
-    removeBackgroundColorById(expectedAlphabet);
+    setElementValueById("current-score", currentScore + 1);
+    removeBackgroundColorById(btnChecked);
     continueGame();
   } else {
     const currentLife = getTextElementValueById("current-life");
-    const newLife = currentLife - 1;
-    setElementValueById("current-life", newLife);
-    if (newLife === 0) {
+    setElementValueById("current-life", currentLife - 1);
+    if (currentLife - 1 === 0) {
       gameOver();
     }
   }
 };
 
-const gameOver = () => {
-  hideElementById("play-ground");
-  showElementById("final-score");
-  const currentScore = document.getElementById("current-score");
-  const score = currentScore.innerText;
-  setElementValueById("last-score", score);
-
-  const current = document.getElementById("current-alphabet").innerText;
-  removeBackgroundColorById(current);
-};
-
-document.addEventListener("keyup", handleKeyBoardButtonPress);
-
 const continueGame = () => {
   const alphabet = getARandomAlphabet();
-  const currentAlphabet = document.getElementById("current-alphabet");
-  currentAlphabet.innerText = alphabet;
+  setElementValueById("current-alphabet", alphabet);
   setBackgroundColorById(alphabet);
+  document.removeEventListener("keyup", handleKeyBoardBtnPress);
+  document.addEventListener("keyup", handleKeyBoardBtnPress);
 };
 
-let intervalId;
+const gameOver = () => {
+  clearInterval(intervalId);
+  intervalId = null;
+  hideElementById("play-ground");
+  showElementById("final-score");
+  setElementValueById(
+    "last-score",
+    document.getElementById("current-score").textContent
+  );
+  removeBackgroundColorById(currentAlphabet.textContent);
+  document.removeEventListener("keyup", handleKeyBoardBtnPress);
+};
 
-function play() {
-  let count = 30;
-
+const play = () => {
+  clearInterval(intervalId);
+  intervalId = null;
+  count = 30;
+  setElementValueById("current-life", 5);
+  setElementValueById("current-score", 0);
   hideElementById("home-screen");
   showElementById("play-ground");
   hideElementById("final-score");
+  setElementValueById("timing-counter", count);
 
-  setElementValueById("current-life", 5);
-  setElementValueById("current-score", 0);
-
-  continueGame();
-
-  const timingZone = document.getElementById("timing-counter");
-  timingZone.innerText = count;
-
-  if (intervalId) clearInterval(intervalId);
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
 
   intervalId = setInterval(() => {
     count--;
-    timingZone.innerText = count;
-
-    if (count <= 0) {
+    setElementValueById("timing-counter", count);
+    if (count === 0) {
       clearInterval(intervalId);
+      intervalId = null;
       gameOver();
     }
   }, 1000);
 
-  setTimeout(() => {
-    if (count > 0) {
-      clearInterval(intervalId);
-      gameOver();
-    }
-  }, 30000);
-}
+  continueGame();
+};
